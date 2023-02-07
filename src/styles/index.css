@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Solitreo&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+      font-family: 'Roboto', sans-serif;
+    }
+  }
+
+/* .carousel{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel ::-webkit-scrollbar{
+  display: none;
+} */
+
+.mantine-Carousel-control{
+  border: none;
+  color: white;
+}
