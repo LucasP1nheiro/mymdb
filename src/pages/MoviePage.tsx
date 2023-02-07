@@ -208,7 +208,7 @@ const params = useParams()
                         previousControlIcon={(<div className='bg-white z-50 opacity-100 rounded-full hover:scale-125 duration-300'><CaretLeft size={35} weight='regular' color='#27272a'/></div>)}
                         nextControlIcon={(<div className='bg-white z-50 opacity-100 rounded-full hover:scale-125 duration-300'><CaretRight size={35} weight='regular' color='#27272a'/></div>)}
                         align="start"  
-                        className="flex h-60 px-16 pt-8"
+                        className="flex h-60 px-16 py-4"
                     >
                         {recomendedMovies.map((movie)=>(
                             <Carousel.Slide
