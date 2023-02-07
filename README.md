@@ -1,7 +1,7 @@
 <h1>MyMDB</h1>
 <br/>
  
-<h3><a href="https://mymoviedb.vercel.app/"></a></h3>
+<a href="https://mymoviedb.vercel.app/">MyMDB</a>
  
 <div>
  <h3>Developed by -></h3> 
