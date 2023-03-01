@@ -47,7 +47,7 @@ const Genres = ({changeGenreId}: GenresProps) => {
       initial={{ x: '-100vw', opacity: 0}}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="grid grid-cols-4 pb-20 grid-flow-row gap-28 items-center justify-center min-h-full w-full"
+      className="grid grid-cols-1 xl:grid-cols-4 pb-20 grid-flow-row gap-28 items-center justify-center min-h-full w-full"
     >
         {genres.map((genre, i)=>(
               <Link to={`/genres/${genre.id}`}>
