@@ -17,9 +17,9 @@ const TvShowsPage = () => {
   }, [])  
     
   return (
-    <div className="pb-20">
+    <div className="pb-20 min-h-screen">
         {genres.map((genre, i)=>(
-            <div key={genre.id} className="flex flex-col items-center justify-center min-h-full min-w-screen gap-4">
+            <div key={genre.id} className="flex flex-col items-center justify-center h-[400px] md:h-full min-w-screen gap-4">
                 <TVShowGenre id={genre.id} name={genre.name}/>
             </div>
         ))}

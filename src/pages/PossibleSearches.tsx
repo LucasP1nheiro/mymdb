@@ -38,18 +38,18 @@ const PossibleSearches = () => {
 
   return (
     <motion.div 
-      className="grid grid-cols-4 grid-flow-row gap-28 items-center justify-center min-h-full w-full pb-20"
+      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 grid-flow-row gap-28 items-center justify-center min-h-full w-full pb-20 lg:px-16 xl:px-0"
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.7 }}
     >
       {search.map((movie)=>(
-        <div className="h-96 min-w-1/3 w-auto w- bg-gradient-to-br from-white/10 to-white/20 backdrop-opacity-50 shadow-xl p-2 text-white font-extrabold rounded-xl hover:cursor-pointer hover:scale-110 transition-transform duration-300" >
+        <div className="h-96 min-w-1/3 w-auto shadow-xl text-white font-extrabold bg-zinc-300/5 hover:cursor-pointer hover:scale-95 transition-transform duration-300" >
           {movie.title && (
             <Link to={'/movie/' + movie.id}
             key={movie.id}
           >
-          <img src= {imageURL + movie.poster_path} alt="movie-poster-image" className="h-4/5 w-full rounded-xl"/>
+          <img src= {imageURL + movie.poster_path} alt="movie-poster-image" className="h-4/5 w-full "/>
           <div className="h-1/5 flex items-center justify-around">
             <div>
               <h1>{movie.title}</h1>
@@ -57,7 +57,7 @@ const PossibleSearches = () => {
             </div>
             <div className='flex items-center gap-2'>
               <Star weight="fill" fill='yellow'/>
-              <p>{movie.vote_average}</p>
+              <p>{(movie.vote_average).toFixed(1)}</p>
             </div>
           </div>
         </Link>
@@ -66,7 +66,7 @@ const PossibleSearches = () => {
             <Link to={'/tv/' + movie.id}
             key={movie.id}
           >
-          <img src= {imageURL + movie.poster_path} alt="movie-poster-image" className="h-4/5 w-full rounded-xl"/>
+          <img src= {imageURL + movie.poster_path} alt="movie-poster-image" className="h-4/5 w-full"/>
           <div className="h-1/5 flex items-center justify-around">
             <div>
               <h1>{movie.title}</h1>
@@ -74,7 +74,7 @@ const PossibleSearches = () => {
             </div>
             <div className='flex items-center gap-2'>
               <Star weight="fill" fill='yellow'/>
-              <p>{movie.vote_average}</p>
+              <p>{(movie.vote_average).toFixed(1)}</p>
             </div>
           </div>
         </Link>

@@ -75,10 +75,6 @@ function App() {
           <Route path='/:description/:id' element={<MoviePage/>}/>
         </Routes>
       </BrowserRouter>
-       {/* 
-        <MoviePage/> 
-         */}
-        {/* <MoviePage/> */}
     </motion.div>
   )
 }

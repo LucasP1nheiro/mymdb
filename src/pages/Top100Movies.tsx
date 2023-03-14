@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Star, UsersThree } from 'phosphor-react'
+import { CaretRight, Divide, Star, UsersThree } from 'phosphor-react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
@@ -54,6 +54,7 @@ interface MoviesDataType {
     
   const [data, setData] = useState<MoviesDataType[]>([])
   const [render, setRender] = useState(0)
+  const [titleSelected, setTitleSelected] = useState(false)
   
   if (render === 0) {
         axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=c0ab09e8c5c085013b036d4c56c1d944&language=en-US&page=1')
@@ -84,7 +85,7 @@ interface MoviesDataType {
   return (
     <div className='min-h-full w-full'>
         <motion.div 
-            className='text-center text-white text-5xl font-extrabold py-8 '
+            className='text-center text-white text-2xl md:text-5xl font-extrabold py-8 '
             initial={{ x: '-100vw' }}
             animate={{ x: 0 }}
             transition={{ duration: 0.6}}
@@ -101,9 +102,9 @@ interface MoviesDataType {
                         transition={{ duration: 1}}
                     >
                         <Link to={'/movie/' + movie.id}>
-                            <img src= {imageURL + movie.poster_path} alt="" className="h-64 rounded-xl cursor-pointer hover:brightness-50 transition-all duration-300 hover:scale-95"/>
+                            <img src= {imageURL + movie.poster_path} alt="movie-poster" className="w-10 h-auto md:w-44 md:h-64 rounded-sm cursor-pointer hover:brightness-50 transition-all duration-300 hover:scale-95"/>
                         </Link>
-                        <div className='flex text-white px-20 pr-20 gap-10 w-full justify-around'>
+                        <div className='flex flex-col md:flex-row text-white px-20 pr-20 gap-10 w-full justify-around'>
                             <div className='w-1/2 flex flex-col justify-around '>
                                 <span className='flex items-center justify-start gap-4'>
                                     <Star size={32} weight='fill' fill='yellow'/>
@@ -120,13 +121,29 @@ interface MoviesDataType {
                                 </span>
                             </div>
                             <div className='w-1/2 h-full min-h-full min-w-1/2 flex flex-col justify-around'>
-                                <div className='w-full flex items-center justify-center'>
-                                    <Link to={'/movie/' + movie.id}>
-                                        <h1 className='text-3xl min-w-0 min-h-0 font-handLetter hover:cursor-pointer hover:scale-125 hover:brightness-50 transition-all duration-300'>{movie.title}</h1>
-                                    </Link>
-                                </div>
-                                    <p className='text-base'>{movie.overview}</p>
-                                    <p className='text-base'>Release date: {movie.release_date.slice(0,4)}</p>
+                                    <div 
+                                        onMouseLeave={() => setTitleSelected(false)} 
+                                        className= 'w-full flex items-center justify-center gap-4'
+                                    >
+                                        <Link to={'/movie/' + movie.id}>
+                                            <h1 onMouseEnter={() => setTitleSelected(true)} className='text-3xl min-h-0 hover:cursor-pointer'>{movie.title}</h1>
+                                        </Link>
+                                        {/* {titleSelected && (
+                                            <Link to={'/movie/' + movie.id} className='absolute right-44 text-bold text-base text-cyan-300'>
+                                                <motion.div 
+                                                    initial={{ x: '-10px'}}
+                                                    animate={{ x: '30px'}}
+                                                    transition={{ duration: 0.5}}
+                                                    className=' flex items-center justify-center'
+                                                >
+                                                    <p>See more</p>
+                                                    <CaretRight size={20} color="#00ffff" weight="light"/>
+                                                </motion.div>
+                                            </Link>
+                                        )}  */}                                     
+                                    </div>
+                                <p className='text-base hidden md:flex'>{movie.overview}</p>
+                                <p className='text-base'>Release date: {movie.release_date.slice(0,4)}</p>
                             </div>
                         </div>
                     </motion.div>
@@ -138,7 +155,7 @@ interface MoviesDataType {
                         transition={{ duration: 1}}
                     >
                         <Link to={'/movie/' + movie.id}>
-                            <img src= {imageURL + movie.poster_path} alt="" className="h-64 rounded-xl cursor-pointer hover:brightness-50 transition-all duration-300 hover:scale-95"/>
+                            <img src= {imageURL + movie.poster_path} alt="" className="w-44 h-64 rounded-sm cursor-pointer hover:brightness-50 transition-all duration-300 hover:scale-95"/>
                         </Link>
                         <div className='flex text-white px-20 pr-20 gap-10 w-full justify-around'>
                             <div className='w-1/2 flex flex-col justify-around '>
@@ -157,10 +174,28 @@ interface MoviesDataType {
                                 </span>
                             </div>
                             <div className='w-1/2 h-full min-h-full min-w-1/2 flex flex-col justify-around'>
-                                <div className='w-full flex items-center justify-center'>
-                                    <Link to={'/movie/' + movie.id}>
-                                        <h1 className='text-3xl min-w-0 min-h-0 font-handLetter hover:cursor-pointer hover:scale-125 hover:brightness-50 transition-all duration-300'>{movie.title}</h1>
-                                    </Link>
+                                <div className='w-full flex items-center justify-cente'>
+                                    <div 
+                                        onMouseLeave={() => setTitleSelected(false)} 
+                                        className= 'w-full flex items-center justify-center gap-4'
+                                    >
+                                        <Link to={'/movie/' + movie.id}>
+                                            <h1 onMouseEnter={() => setTitleSelected(true)} className='text-3xl min-h-0 hover:cursor-pointer'>{movie.title}</h1>
+                                        </Link>
+                                        {/* {titleSelected && (
+                                            <Link to={'/movie/' + movie.id} className='absolute right-44 text-bold text-base text-cyan-300'>
+                                                <motion.div 
+                                                    initial={{ x: '-10px'}}
+                                                    animate={{ x: '30px'}}
+                                                    transition={{ duration: 0.5}}
+                                                    className=' flex items-center justify-center'
+                                                >
+                                                    <p>See more</p>
+                                                    <CaretRight size={20} color="#00ffff" weight="light"/>
+                                                </motion.div>
+                                            </Link>
+                                        )}  */}                                     
+                                    </div>
                                 </div>
                                 
                                     <p className='text-base'>{movie.overview}</p>
