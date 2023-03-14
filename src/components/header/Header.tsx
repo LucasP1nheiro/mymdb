@@ -40,13 +40,13 @@ const Header = ({findMovie}: HeaderProps) => {
   }  
 
   return (
-    <header className="max-w-full h-1/10 bg-zinc-800 p-6 border-b-2 border-zinc-400 sticky top-0 left-0 right-0 z-10">
+    <header className="max-w-full h-1/10 p-6 border-b-2 border-zinc-400 top-0 left-0 right-0 z-10">
         <nav className="flex items-center justify-between">
             <div className="flex gap-4 justify-center items-center xl:w-1/2">
               <Link to='/'>
-                <div className="bg-white/100 flex items-center justify-around gap-4 text-zinc-800 font-extrabold text-base rounded-sm border-2 border-white px-1 py-1 hover:bg-white/80 bg-opacity-50 transition-all duration-500">
-                  <FilmSlate size={32} color={'#2f2f2a'}/>
-                  <p className="hidden xl:flex">MyMDB</p>
+                <div className="flex items-center justify-around gap-4 text-zinc-800 font-extrabold text-base ">
+                  <FilmSlate size={32} color={'#ffffff'}/>
+                  <p className="hidden xl:flex text-white">MyMDB</p>
                 </div>
               </Link>
                 <Menu/>

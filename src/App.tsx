@@ -43,16 +43,10 @@ function App() {
   function changeGenreId(id: number) {
     setMoviesByGenre(id)
   }
-  
-
-  /* useEffect(()=>{
-    axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=c0ab09e8c5c085013b036d4c56c1d944&language=en-US&page=1')
-    .then(response=>console.log(response.data))
-  },[]) */
 
   return (
     <motion.div 
-      className='min-w-screen min-h-screen bg-zinc-800'
+      className='main min-w-screen min-h-screen'
       initial={{opacity:0}}
       animate={{opacity: 1}}
       exit={{opacity: 0}}

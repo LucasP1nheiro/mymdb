@@ -3,6 +3,7 @@ import axios from "axios"
 import {  useEffect, useState } from "react"
 import HomePageCards from './HomePageCards'
 import { Carousel } from '@mantine/carousel'
+import { motion as m } from 'framer-motion'
 
 
 interface MoviesDataType {
@@ -24,6 +25,7 @@ interface MoviesDataType {
 
 const BestMovies = () => {
   const [data, setData] = useState(Array<MoviesDataType>)
+  const [hover, setHover] = useState(false)
   
   useEffect(() => {
     axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=c0ab09e8c5c085013b036d4c56c1d944&language=en-US&page=1')
@@ -35,20 +37,34 @@ const BestMovies = () => {
 
   return (
     <div className='w-full flex items-center justify-center  text-center'>
-      <div className=' flex items-center justify-center w-5/6'>
+      <div className='flex items-center justify-center w-full'>
       <Carousel 
         withIndicators
         slideSize="20%"
         slideGap="md"
         containScroll= "trimSnaps"
-        /* breakpoints={[
-          { maxWidth: 'md', slideSize: '50%' },
-          { maxWidth: 'sm', slideSize: '100%', slideGap: 0 },
-        ]} */
-        previousControlIcon={(<div className='bg-white z-50 opacity-100 rounded-full hover:scale-125 duration-300'><CaretLeft size={50} weight='regular' color='#27272a'/></div>)}
-        nextControlIcon={(<div className='bg-white z-50 opacity-100 rounded-full hover:scale-125 duration-300'><CaretRight size={50} weight='regular' color='#27272a'/></div>)}
+        previousControlIcon={ hover && (
+          <m.div
+            initial={{ opacity: 0}}
+            animate={{ opacity: 1}}
+            transition={{ duration: 1}}
+          >
+            <CaretLeft size={50} weight='regular' color='#ffffff'/>
+          </m.div>
+        )}
+        nextControlIcon={hover && (
+          <m.div
+            initial={{ opacity: 0}}
+            animate={{ opacity: 1}}
+            transition={{ duration: 1}}
+
+          >
+            <CaretRight size={50} weight='regular' color='#ffffff'/>
+          </m.div>
+        )}
         align="start" 
         className="w-5/6 h-3/5 mt-6 flex gap-3 z-0 justify-center items-center px-20 pt-2"
+        onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
       > 
         {data.map((movie)=>(
           <Carousel.Slide><HomePageCards movie={movie}/></Carousel.Slide>

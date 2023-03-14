@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import HomePageCards from './HomePageCards'
 import { Carousel } from '@mantine/carousel'
 import { CaretLeft, CaretRight } from "phosphor-react"
-import { CarouselSlide } from "@mantine/carousel/lib/CarouselSlide/CarouselSlide"
+import { motion as m } from 'framer-motion'
 
 interface MoviesDataType {
   adult: boolean,
@@ -25,6 +25,7 @@ interface MoviesDataType {
 
 const LatestReleases = () => {
   const [data, setData] = useState(Array<MoviesDataType>)
+  const [hover, setHover] = useState(false)
   const imageURL = "https://image.tmdb.org/t/p/w500/"
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const LatestReleases = () => {
   console.log(data)
 
   return (
-    <div className="flex items-center justify-center w-5/6"> 
+    <div className="flex items-center justify-center w-full"> 
     <Carousel
       withIndicators
         slideSize="20%"
@@ -45,10 +46,27 @@ const LatestReleases = () => {
           { maxWidth: 'md', slideSize: '50%' },
           { maxWidth: 'sm', slideSize: '100%', slideGap: 0 },
         ]} */
-        previousControlIcon={(<div className='bg-white z-50 opacity-100 rounded-full hover:scale-125 duration-300'><CaretLeft size={50} weight='regular' color='#27272a'/></div>)}
-        nextControlIcon={(<div className='bg-white z-50 opacity-100 rounded-full hover:scale-125 duration-300'><CaretRight size={50} weight='regular' color='#27272a'/></div>)}
+        previousControlIcon={ hover && (
+          <m.div
+            initial={{ opacity: 0}}
+            animate={{ opacity: 1}}
+            transition={{ duration: 1}}
+          >
+            <CaretLeft size={50} weight='regular' color='#ffffff'/>
+          </m.div>
+        )}
+        nextControlIcon={hover && (
+          <m.div
+            initial={{ opacity: 0}}
+            animate={{ opacity: 1}}
+            transition={{ duration: 1}}
+          >
+            <CaretRight size={50} weight='regular' color='#ffffff'/>
+          </m.div>
+        )}
         align="start" 
         className="w-5/6 h-3/5 mt-6 flex px-20 pt-2 gap-3 z-0 justify-center items-center"
+        onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
     >
       {data.map((movie)=>(
         <Carousel.Slide><HomePageCards movie={movie} /></Carousel.Slide>
