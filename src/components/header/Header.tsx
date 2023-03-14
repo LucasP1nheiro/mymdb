@@ -40,9 +40,9 @@ const Header = ({findMovie}: HeaderProps) => {
   }  
 
   return (
-    <header className="max-w-full h-1/10 p-6 border-b-2 border-zinc-400 top-0 left-0 right-0 z-10">
-        <nav className="flex items-center justify-between">
-            <div className="flex gap-4 justify-center items-center xl:w-1/2">
+    <header className="max-w-full h-1/10 p-3 md:p-6 border-b-2 border-zinc-400 top-0 left-0 right-0 z-10">
+        <nav className="flex items-center justify-between lg:px-36 xl:px-72">
+          <div className="hidden md:flex gap-4 justify-center items-center">
               <Link to='/'>
                 <div className="flex items-center justify-around gap-4 text-zinc-800 font-extrabold text-base ">
                   <FilmSlate size={32} color={'#ffffff'}/>
@@ -51,23 +51,33 @@ const Header = ({findMovie}: HeaderProps) => {
               </Link>
                 <Menu/>
             </div>
-            <div className="flex gap-4 justify-center items-center rounded-xl xl:w-1/2">
+            {!inputExists && (
+              <div className="flex md:hidden gap-4 justify-center items-center">
+              <Link to='/'>
+                <div className="flex items-center justify-around gap-4 text-zinc-800 font-extrabold text-base ">
+                  <FilmSlate size={32} color={'#ffffff'}/>
+                  <p className="hidden xl:flex text-white">MyMDB</p>
+                </div>
+              </Link>
+                <Menu/>
+            </div>
+            )}
+            <div className="flex gap-4 justify-center items-center rounded-xl">
                 <div 
                   className="p-2 rounded-full bg-transparent hover:cursor-pointer hover:bg-white/20 bg-opacity-50 transition-all duration-500"
                   onClick={()=> setInputExists(true)}
                 >
-                  <MagnifyingGlass size={20} color={'#ffffff'}/>
+                  {inputExists ? <X size={20} color={'#ffffff'}/> : <MagnifyingGlass size={20} color={'#ffffff'}/>}
                 </div>
                 {inputExists && (
                   <motion.input 
-                  /* initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.01 }} */
                   initial={{ width: '0' }}
-                  animate={{ width: '200px' }}
+                  animate={{ width: '100%' }}
                   transition={{ duration: 0.01}}
                   value={search}
-                  type="text" placeholder="Search" className="outline-none bg-transparent border-b-1  border-white text-white transition-all duration-300" 
+                  type="text" 
+                  placeholder="Search" 
+                  className="outline-none bg-transparent border-b-1 border-white text-white transition-all duration-300" 
                   onChange={(e) => setSearch(e.target.value)} 
                   onKeyDown={handleSearch}
                   onBlur={() => setInputExists(false)}

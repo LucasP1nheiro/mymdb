@@ -76,15 +76,15 @@ const GenreResults = ({moviesByGenre}: IdType) => {
           params.id == genre.id.toString() && (
             <h1 
               key={params.id} 
-              className="font-handLetter text-5xl text-white uppercase font-extrabold">{genre.name} movies
+              className="font-handLetter text-3xl lg:text-4xl xl:text-5xl text-white uppercase font-extrabold">{genre.name} movies
             </h1>
           )
         )
       )}
-      <div className="grid grid-cols-4 pb-20 grid-flow-row gap-28 items-center justify-center min-h-full w-4/5">      
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 pb-20 lg:px-10 xl:px-0 grid-flow-row gap-28 items-center justify-center min-h-full w-4/5">      
         {data.map((movie) => 
           (<Link to={'/movie/' + movie.id}
-            className="h-48 min-w-1/3 w-auto bg-no-repeat bg-center bg-cover backdrop-opacity-50 shadow-xl text-white font-extrabold rounded-xl hover:brightness-50 hover:scale-125 hover:z-2 cursor-pointer transition-all duration-500" 
+            className="h-48 min-w-1/3 w-auto bg-no-repeat bg-center bg-cover backdrop-opacity-50 shadow-xl text-white font-extrabold rounded-xl hover:brightness-50 hover:scale-105 hover:z-2 cursor-pointer transition-all duration-500" 
             key={movie.id}
             style ={{backgroundImage: `url(${imageURL + movie.backdrop_path})`}}
             /* onClick={() => handleClick({id: genre.id, name: genre.name})} */

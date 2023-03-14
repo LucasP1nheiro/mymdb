@@ -47,18 +47,18 @@ const Genres = ({changeGenreId}: GenresProps) => {
       initial={{ x: '-100vw', opacity: 0}}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="grid grid-cols-1 xl:grid-cols-4 pb-20 grid-flow-row gap-28 items-center justify-center min-h-full w-full"
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 pb-20 lg:px-10 xl:px-0 grid-flow-row gap-28 items-center justify-center min-h-full w-full"
     >
         {genres.map((genre, i)=>(
               <Link to={`/genres/${genre.id}`}>
                 <div 
-                className="h-48 min-w-1/3 w-auto bg-no-repeat bg-center bg-cover backdrop-opacity-50 shadow-xl text-white font-extrabold rounded-xl hover:brightness-50 hover:scale-125 hover:z-2 cursor-pointer transition-all duration-500" 
+                className="h-48 min-w-1/3 w-auto bg-no-repeat bg-center bg-cover backdrop-opacity-50 shadow-xl text-white font-extrabold rounded-md hover:brightness-50 hover:scale-105 hover:z-2 cursor-pointer transition-all duration-500" 
                 key={genre.id}
                 style ={{backgroundImage: `url(${pictureArray[i]})`}}
                 onClick={() => changeGenreId(genre.id)}
               >
                 <div 
-                className="h-full  w-full text-center flex items-center justify-center bg-gradient-to-br from-white/5 to-white/30 backdrop-opacity-50 shadow-xl p-2 text-white font-extrabold rounded-xl uppercase text-3xl">
+                className="h-full  w-full text-center flex items-center justify-center bg-gradient-to-br from-white/5 to-white/30 backdrop-opacity-50 shadow-xl p-2 text-white font-extrabold rounded-md uppercase text-3xl">
                   <h1>{genre.name}</h1>
                 </div>
                 </div>

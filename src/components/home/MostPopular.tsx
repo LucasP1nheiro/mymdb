@@ -62,7 +62,7 @@ const MostPopular = () => {
           </m.div>
         )}
         align="start" 
-        className="w-5/6 h-3/5 mt-6 flex px-20 pt-2 gap-3 z-0 justify-center items-center"
+        className="w-full md:w-5/6 h-3/5 mt-6 flex gap-3 z-0 justify-center items-center px-4 md:px-20 pt-2"
         onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
     >
       {data.map((movie)=>(
