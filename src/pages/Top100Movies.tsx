@@ -54,7 +54,7 @@ interface MoviesDataType {
     
   const [data, setData] = useState<MoviesDataType[]>([])
   const [render, setRender] = useState(0)
-  const [titleSelected, setTitleSelected] = useState(false)
+  const [hoveredId, setHoveredId] = useState<number | null>(null)
   
   if (render === 0) {
         axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=c0ab09e8c5c085013b036d4c56c1d944&language=en-US&page=1')
@@ -80,7 +80,6 @@ interface MoviesDataType {
 
   const imageURL = "https://image.tmdb.org/t/p/w500/"
 
-  console.log(data)
 
   return (
     <div className='min-h-full w-full'>
@@ -102,7 +101,7 @@ interface MoviesDataType {
                         transition={{ duration: 1}}
                     >   
                         <Link to={'/movie/' + movie.id}>
-                            <h1 onMouseEnter={() => setTitleSelected(true)} className='text-2xl text-cyan-300 border-b border-cyan-300 flex md:hidden min-h-0 hover:cursor-pointer'>{movie.title}</h1>
+                            <h1 onMouseEnter={() => setHoveredId(movie.id)} className='text-2xl text-cyan-300 border-b border-cyan-300 flex md:hidden min-h-0 hover:cursor-pointer'>{movie.title}</h1>
                         </Link>
                         <Link to={'/movie/' + movie.id}>
                             <img src= {imageURL + movie.poster_path} alt="movie-poster" className="w-full h-full md:w-44 md:h-64 rounded-sm cursor-pointer hover:brightness-50 transition-all duration-300 hover:scale-95"/>
@@ -126,25 +125,23 @@ interface MoviesDataType {
                             </div>
                             <div className='w-full md:w-1/2 h-full min-h-full min-w-1/2 flex flex-col justify-around md:gap-10'>
                                     <div 
-                                        onMouseLeave={() => setTitleSelected(false)} 
-                                        className= 'w-full flex items-center justify-center gap-4'
+                                        onMouseLeave={() => setHoveredId(null)} 
+                                        className= 'w-fit flex items-center justify-start gap-4'
                                     >
-                                        <Link to={'/movie/' + movie.id}>
-                                            <h1 onMouseEnter={() => setTitleSelected(true)} className='text-3xl text-cyan-300 border-b border-cyan-300 hidden md:flex min-h-0 hover:cursor-pointer'>{movie.title}</h1>
-                                        </Link>
-                                        {/* {titleSelected && movie.title === movie.title && (
-                                            <Link to={'/movie/' + movie.id} className='absolute right-44 text-bold text-base text-cyan-300'>
+                                        <Link to={'/movie/' + movie.id} className='flex items-center w-fit'>
+                                            <h1 onMouseEnter={() => setHoveredId(movie.id)} className='text-3xl text-cyan-300 border-b border-cyan-300 hidden md:flex min-h-0 hover:cursor-pointer'>{movie.title}</h1>
+                                            {(movie.id === hoveredId) && (
                                                 <motion.div 
-                                                    initial={{ x: '-10px'}}
-                                                    animate={{ x: '30px'}}
-                                                    transition={{ duration: 0.5}}
-                                                    className=' flex items-center justify-center'
+                                                    initial={{ x: '0%', opacity: 0}}
+                                                    animate={{ x: '30%', opacity: 1}}
+                                                    transition={{ duration: 0.7}}
+                                                    className='flex items-center justify-center text-cyan-300'
                                                 >
                                                     <p>See more</p>
                                                     <CaretRight size={20} color="#00ffff" weight="light"/>
                                                 </motion.div>
-                                            </Link>
-                                        )}    */}                                   
+                                            )}  
+                                        </Link>                                 
                                     </div>
                                 <p className='text-base hidden md:flex'>{movie.overview}</p>
                                 <p className='text-base hidden md:flex'>Release date: {movie.release_date.slice(0,4)}</p>
@@ -159,7 +156,7 @@ interface MoviesDataType {
                         transition={{ duration: 1}}
                     >   
                         <Link to={'/movie/' + movie.id}>
-                            <h1 onMouseEnter={() => setTitleSelected(true)} className='text-2xl text-cyan-300 border-b border-cyan-300 flex md:hidden min-h-0 hover:cursor-pointer'>{movie.title}</h1>
+                            <h1 onMouseEnter={() => setHoveredId(movie.id)} className='text-2xl text-cyan-300 border-b border-cyan-300 flex md:hidden min-h-0 hover:cursor-pointer'>{movie.title}</h1>
                         </Link>
                         <Link to={'/movie/' + movie.id}>
                             <img src= {imageURL + movie.poster_path} alt="movie-poster" className="w-full h-full md:w-44 md:h-64 rounded-sm cursor-pointer hover:brightness-50 transition-all duration-300 hover:scale-95"/>
@@ -183,25 +180,23 @@ interface MoviesDataType {
                             </div>
                             <div className='w-full md:w-1/2 h-full min-h-full min-w-1/2 flex flex-col justify-around md:gap-10'>
                                     <div 
-                                        onMouseLeave={() => setTitleSelected(false)} 
-                                        className= 'w-full flex items-center justify-center gap-4'
+                                        onMouseLeave={() => setHoveredId(null)} 
+                                        className= 'w-fit flex items-center justify-start gap-4'
                                     >
-                                        <Link to={'/movie/' + movie.id}>
-                                            <h1 onMouseEnter={() => setTitleSelected(true)} className='text-3xl text-cyan-300 border-b border-cyan-300 hidden md:flex min-h-0 hover:cursor-pointer'>{movie.title}</h1>
-                                        </Link>
-                                        {/* {titleSelected && movie.title === movie.title && (
-                                            <Link to={'/movie/' + movie.id} className='absolute right-44 text-bold text-base text-cyan-300'>
+                                        <Link to={'/movie/' + movie.id} className='flex items-center w-fit'>
+                                            <h1 onMouseEnter={() => setHoveredId(movie.id)} className='text-3xl text-cyan-300 border-b border-cyan-300 hidden md:flex min-h-0 hover:cursor-pointer'>{movie.title}</h1>
+                                            {(movie.id === hoveredId) && (
                                                 <motion.div 
-                                                    initial={{ x: '-10px'}}
-                                                    animate={{ x: '30px'}}
-                                                    transition={{ duration: 0.5}}
-                                                    className=' flex items-center justify-center'
+                                                    initial={{ x: '0%', opacity: 0}}
+                                                    animate={{ x: '30%', opacity: 1}}
+                                                    transition={{ duration: 0.7}}
+                                                    className='flex items-center justify-center text-cyan-300'
                                                 >
                                                     <p>See more</p>
                                                     <CaretRight size={20} color="#00ffff" weight="light"/>
                                                 </motion.div>
-                                            </Link>
-                                        )}    */}                                   
+                                            )}  
+                                        </Link>                                 
                                     </div>
                                 <p className='text-base hidden md:flex'>{movie.overview}</p>
                                 <p className='text-base hidden md:flex'>Release date: {movie.release_date.slice(0,4)}</p>
