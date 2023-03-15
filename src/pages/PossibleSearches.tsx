@@ -42,7 +42,7 @@ const PossibleSearches = () => {
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.7 }}
-    >
+    > 
       {search.map((movie)=>(
         <div className="h-96 min-w-1/3 w-auto shadow-xl text-white font-extrabold bg-zinc-300/5 hover:cursor-pointer hover:scale-95 transition-transform duration-300" >
           {movie.title && (
