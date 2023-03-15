@@ -40,7 +40,7 @@ const Header = ({findMovie}: HeaderProps) => {
   }  
 
   return (
-    <header className="max-w-full h-1/10 p-3 md:p-6 border-b-2 border-zinc-400 top-0 left-0 right-0 z-10">
+    <header className="max-w-full h-1/10 p-3 md:p-6 shadow-2xl inset-0 z-10">
         <nav className="flex items-center justify-between lg:px-36 xl:px-72">
           <div className="hidden md:flex gap-4 justify-center items-center">
               <Link to='/'>
