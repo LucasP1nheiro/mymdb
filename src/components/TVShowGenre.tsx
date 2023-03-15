@@ -28,54 +28,52 @@ const TVShowGenre = ({id, name}: GenreType) => {
     }, [])
 
   return (
-        <motion.div 
-            className="w-full md:w-5/6 h-full md:h-3/5 flex flex-col pt-5 md:py-9 md:px-8 gap-10 overflow-hidden z-0 items-start"
-            initial={{ x: '-100vw' }}
-                animate={{ x: 0 }}
-                transition={{ duration: 0.7}}
-        >
-            <h1 className='text-2xl md:text-5xl text-white pt-10 md:pt-20 ml-4 md:ml-20'>{name}</h1>
-            <Carousel 
-                className='w-full md:w-full h-3/5 mt-6 flex gap-3 z-0 justify-center items-center px-4 pt-20 md:px-20 md:pt-0'
-                withIndicators
-                slideSize="20%"
-                slideGap="md"
-                containScroll= "trimSnaps"
-                previousControlIcon={ hover && (
-                    <motion.div
-                      initial={{ opacity: 0}}
-                      animate={{ opacity: 1}}
-                      transition={{ duration: 1}}
-                    >
-                      <CaretLeft size={50} weight='regular' color='#ffffff'/>
-                    </motion.div>
-                  )}
-                  nextControlIcon={hover && (
-                    <motion.div
-                      initial={{ opacity: 0}}
-                      animate={{ opacity: 1}}
-                      transition={{ duration: 1}}
-          
-                    >
-                      <CaretRight size={50} weight='regular' color='#ffffff'/>
-                    </motion.div>
-                  )}
-                align="start" 
-                onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+    <div className='w-full h-full md:h-3/5 flex flex-col pt-5 md:py-9 md:px-8 z-0'>
+      <div className='flex flex-col items-center justify-center md:justify-start w-full'>
+        <h1 className='w-5/6 md:w-5/6 text-start md:text-start text-2xl md:text-4xl text-white pt-10 md:pt-20 md:ml-40'>{name}</h1>
+        <Carousel 
+          withIndicators
+          slideSize="20%"
+          slideGap="md"
+          containScroll= "keepSnaps"
+          previousControlIcon={ hover && (
+            <motion.div
+              initial={{ opacity: 0}}
+              animate={{ opacity: 1}}
+              transition={{ duration: 1}}
             >
-                {show.map((show)=> (
-                    <Carousel.Slide className='h-96 w-[400px] md:w-[250px] shadow-xl font-extrabold hover:brightness-50 hover:scale-95 hover:z-2 cursor-pointer transition-all duration-500'>
-                        <Link
-                        to={'/tv/' + show.id} 
-                        className="h-72 w-[100px] md:min-w-1/8 shadow-xl text-white font-extrabold hover:brightness-50 hover:cursor-pointer transition-all duration-500" 
-                        key={show.id}
-                    >
-                        <img src= {imageURL + show.poster_path} alt={`${show.name}-poster`} className="h-full w-full bg-cover bg-no-repeat"/>
-                  </Link>
-                    </Carousel.Slide>
-                ))}
-            </Carousel>
-        </motion.div>
+              <CaretLeft size={50} weight='regular' color='#ffffff'/>
+            </motion.div>
+          )}
+          nextControlIcon={hover && (
+            <motion.div
+              initial={{ opacity: 0}}
+              animate={{ opacity: 1}}
+              transition={{ duration: 1}}
+
+            >
+              <CaretRight size={50} weight='regular' color='#ffffff'/>
+            </motion.div>
+          )}
+          align="start" 
+          className="w-full md:w-5/6 h-3/5 mt-0 flex gap-10 z-0 justify-center items-center px-2 md:px-20 pt-2"
+          onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+        > 
+          {show.map((show)=> (
+            <Carousel.Slide>
+              <div 
+                className="h-full w-[250px] md:w-[250px] ml-4 md:ml-0 pt-2 md:pt-10 shadow-xl text-white font-extrabold hover:brightness-50 hover:scale-95 hover:z-2 cursor-pointer transition-all duration-500" 
+                key={show.id}
+              >
+                <Link to={'/tv/' + show.id}>
+                <img src= {imageURL + show.poster_path} alt={`${show.name}-poster`} className="h-full w-full bg-cover bg-no-repeat"/>
+                </Link>
+              </div>
+            </Carousel.Slide>
+          ))}
+        </Carousel >
+    </div>
+  </div>
   )
 }
 
