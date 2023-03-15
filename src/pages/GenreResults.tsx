@@ -76,7 +76,7 @@ const GenreResults = ({moviesByGenre}: IdType) => {
           params.id == genre.id.toString() && (
             <h1 
               key={params.id} 
-              className="font-handLetter text-3xl lg:text-4xl xl:text-5xl text-white uppercase font-extrabold">{genre.name} movies
+              className="text-3xl lg:text-4xl xl:text-5xl text-white uppercase font-extrabold">{genre.name} movies
             </h1>
           )
         )
