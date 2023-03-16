@@ -84,13 +84,12 @@ const GenreResults = ({moviesByGenre}: IdType) => {
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 pb-20 lg:px-10 xl:px-0 grid-flow-row gap-28 items-center justify-center min-h-full w-4/5">      
         {data.map((movie) => 
           (<Link to={'/movie/' + movie.id}
-            className="h-48 min-w-1/3 w-auto bg-no-repeat bg-center bg-cover backdrop-opacity-50 shadow-xl text-white font-extrabold rounded-xl hover:brightness-50 hover:scale-105 hover:z-2 cursor-pointer transition-all duration-500" 
+            className="h-48 min-w-1/3 w-auto bg-no-repeat bg-center bg-cover backdrop-opacity-50 shadow-xl text-white font-extrabold rounded-md hover:brightness-50 hover:scale-105 hover:z-2 cursor-pointer transition-all duration-500" 
             key={movie.id}
             style ={{backgroundImage: `url(${imageURL + movie.backdrop_path})`}}
-            /* onClick={() => handleClick({id: genre.id, name: genre.name})} */
           >
             <div 
-            className="h-full  w-full text-center flex items-center justify-center bg-gradient-to-br from-white/5 to-white/30 backdrop-opacity-50 shadow-xl p-2 text-white font-extrabold rounded-xl uppercase text-3xl">
+            className="h-full  w-full text-center flex items-center justify-center bg-gradient-to-br from-white/5 to-white/30 backdrop-opacity-50 shadow-xl p-2 text-white font-extrabold rounded-md uppercase text-3xl">
             </div>
               <div className="p-2">
                 <h1 className="text-center">{movie.title}</h1>
