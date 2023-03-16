@@ -57,7 +57,7 @@ const PossibleSearches = () => {
             </div>
             <div className='flex items-center gap-2'>
               <Star weight="fill" fill='yellow'/>
-              <p>{(movie.vote_average).toFixed(1)}</p>
+              <p>{(movie.vote_average) > 0 && (movie.vote_average).toFixed(1)}</p>
             </div>
           </div>
         </Link>
@@ -74,7 +74,7 @@ const PossibleSearches = () => {
             </div>
             <div className='flex items-center gap-2'>
               <Star weight="fill" fill='yellow'/>
-              <p>{(movie.vote_average).toFixed(1)}</p>
+              <p>{(movie.vote_average) > 0 && (movie.vote_average).toFixed(1)}</p>
             </div>
           </div>
         </Link>
