@@ -8,6 +8,7 @@
 @layer base {
     html {
       font-family: 'Space Grotesk', sans-serif;
+      scroll-behavior: smooth;
     }
   }
 
@@ -16,12 +17,13 @@
   }
 
   ::-webkit-scrollbar-thumb{
-    background: #1e1e1f;
+    background: #888999;
     border-radius: 4px;
   }
   
   ::-webkit-scrollbar-track{
-    background: #0f0e13;
+    background: #434344;
+    
   }
 
 .main {

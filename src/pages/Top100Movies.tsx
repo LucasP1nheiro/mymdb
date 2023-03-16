@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { CaretRight, Divide, Star, UsersThree } from 'phosphor-react'
+import { ArrowCircleUp, CaretRight, Divide, Star, UsersThree } from 'phosphor-react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
@@ -29,6 +29,11 @@ interface MoviesDataType {
   }
 
  const Top100Movies = () => {
+
+    const goTop = () => {
+        window.scroll(0, 0)
+        
+    }
 
     const possibleGenres = {
         28 : 'Action',
@@ -162,6 +167,9 @@ interface MoviesDataType {
                     </motion.div>
             </div>
         ))}
+        <div className='fixed bottom-5 right-5 hover:cursor-pointer hover:-translate-y-1 transition-all duration-300'>
+             <ArrowCircleUp size={32} color="#00ffff" weight="fill" onClick={goTop}/>
+        </div>
     </div>
   )
 }
